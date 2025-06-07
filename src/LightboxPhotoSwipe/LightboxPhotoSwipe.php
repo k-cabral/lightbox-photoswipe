@@ -60,6 +60,9 @@ class LightboxPhotoSwipe
             add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
             add_action('wp_footer', [$this, 'outputFooter']);
             add_action('wp_head', [$this, 'bufferStart'], 2050);
+            if ($this->optionsManager->getOption('wrap_nonlink') === '1') {
+                add_filter('the_content', [$this, 'wrapImagesWithLinks'], 4);
+            }
             add_filter('the_content', [$this, 'filterOutput']);
             if ($this->optionsManager->getOption('separate_galleries')) {
                 remove_shortcode('gallery');
@@ -278,6 +281,59 @@ class LightboxPhotoSwipe
             }
         }
     }
+
+
+    function wrapImagesWithLinks($content) {
+        // Regular expression to match img tags
+        $pattern = '/<img[^>]+>/i';
+
+        // Find all img tags in the content
+        preg_match_all($pattern, $content, $matches);
+
+        if (!empty($matches[0])) {
+            foreach ($matches[0] as $img_tag) {
+                // Extract the src attribute from the img tag
+                preg_match('/src=["\']([^"\']+)["\']/', $img_tag, $src_match);
+
+                if (!empty($src_match[1])) {
+                    $img_src = $src_match[1];
+
+                    // Skip if already wrapped in a link
+                    $img_position = strpos($content, $img_tag);
+                    $before_img = substr($content, max(0, $img_position - 100), 100);
+                    $after_img = substr($content, $img_position + strlen($img_tag), 100);
+
+                    if (strpos($before_img, '<a') !== false && strpos($after_img, '</a>') !== false) {
+                        $last_a_open = strrpos($before_img, '<a');
+                        $last_a_close = strrpos($before_img, '</a>');
+
+                        if ($last_a_open > $last_a_close) {
+                            continue;
+                        }
+                    }
+
+                    // Skip image if it contains the exclude class
+                    $exclude_class = $this->optionsManager->getOption('wrap_nonlink_exclude_class');
+                    if (strpos($img_tag, 'class="') !== false && strpos($img_tag, $exclude_class) !== false) {
+                        continue;
+                    }
+
+                    // Get the full-size image URL (remove size suffixes like -150x150)
+                    $full_img_src = preg_replace('/-\d+x\d+(?=\.[a-z]{3,4}$)/i', '', $img_src);
+
+                    // Create the linked image HTML
+                    // $linked_img = '<a href="' . esc_url($full_img_src) . '" target="_blank" rel="noopener">' . $img_tag . '</a>';
+                    $linked_img = '<a href="' . $full_img_src . '">' . $img_tag . '</a>';
+
+                    // Replace the original img tag with the linked version
+                    $content = str_replace($img_tag, $linked_img, $content);
+                }
+            }
+        }
+
+        return $content;
+    }
+
 
     /**
      * Callback to handle a single image link

@@ -28,6 +28,21 @@
             <?php echo __('Available post types on this site', 'lightbox-photoswipe'); ?>: <?php $this->uiGetposttypes(); ?></p>
         </td>
     </tr>
+    <tr class="lbwps-ver5">
+        <th scope="row">
+            <?php echo __('Wrap options', 'lightbox-photoswipe'); ?>
+        </th>
+        <td>
+            <label>
+                <?php $this->uiControlCheckbox('wrap_nonlink') ?>
+                <?php echo __('Wrap non-link images', 'lightbox-photoswipe'); ?>
+            </label>
+            <p class="description"><?php echo __("Link images to the media file if they're not linked ") ?></p>
+            <br>
+            <?php $this->uiControlText('wrap_nonlink_ignore_class') ?>
+            <p class="description"><?php echo __('Ignore if they have this CSS class') ?></p>
+        </td>
+    </tr>
     <tr>
         <th scope="row">
             <?php echo __('Visible elements', 'lightbox-photoswipe'); ?>
