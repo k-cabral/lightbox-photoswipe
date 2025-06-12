@@ -69,6 +69,7 @@
             <label><?php $this->uiControlCheckbox('fix_attachment_links') ?>&nbsp;<?php echo __('Fix links to attachment pages instead of images (may slow down your website)', 'lightbox-photoswipe'); ?></label><br>
             <label><?php $this->uiControlCheckbox('support_multiple_domain_mapping') ?>&nbsp;<?php echo __('Support for <a href="https://wordpress.org/plugins/multiple-domain-mapping-on-single-site/" target="_blank">Multiple Domain Mapping on Single Site</a>', 'lightbox-photoswipe'); ?></label><br>
             <label><?php $this->uiControlCheckbox('use_transients') ?>&nbsp;<?php echo __('Cache image information in transients (disabling this can slow down your website, try an object cache first)', 'lightbox-photoswipe'); ?></label><br>
+            <label><?php $this->uiControlCheckbox('scroll_wheel_zoom') ?>&nbsp;<?php echo __('Use scroll wheel to zoom', 'lightbox-photoswipe'); ?></label><br>
         </td>
     </tr>
     <tr>
@@ -89,6 +90,34 @@
             </select>
             <p class="description"><?php echo __('Factor by which SVG images get scaled when displayed in the lightbox.', 'lightbox-photoswipe'); ?>
             <?php if (!function_exists('simplexml_load_file')) { ?><br><?php echo __('<a href="https://www.php.net/manual/en/ref.simplexml.php" target="_blank">The PHP SimpleXML extension</a> is missing on this server! SVG images can not be displayed!', 'lightbox-photoswipe'); ?><?php } ?></p>
+        </td>
+    </tr>
+    <tr class="lbwps-ver5">
+        <th scope="row">
+            <?php echo __('Initial zoom level', 'lightbox-photoswipe'); ?>
+        </th>
+        <td>
+            <?php $this->uiControlText('initial_zoom_level') ?>
+            <p class="description"><?php echo __('Zoom level when photoswipe is opened', 'lightbox-photoswipe'); ?></p>
+            <p class="description"><?php echo __('Each zoom level option can be a positive number, where 1 is original image size; "fit" (image fits into viewport) or "fill" (similar to background-size:cover). In the last two cases image will not be larger than original.', 'lightbox-photoswipe'); ?></p>
+        </td>
+    </tr>
+    <tr class="lbwps-ver5">
+        <th scope="row">
+            <?php echo __('Secondary zoom level', 'lightbox-photoswipe'); ?>
+        </th>
+        <td>
+            <?php $this->uiControlText('secondary_zoom_level') ?>
+            <p class="description"><?php echo __('Zoom level when user clicks "zoom" button, double-taps image, or clicks an image. If it equals to initial - secondary zoom functionality is disabled.', 'lightbox-photoswipe'); ?></p>
+        </td>
+    </tr>
+    <tr class="lbwps-ver5">
+        <th scope="row">
+            <?php echo __('Maximum zoom level', 'lightbox-photoswipe'); ?>
+        </th>
+        <td>
+            <?php $this->uiControlText('max_zoom_level') ?>
+            <p class="description"><?php echo __('Maximum zoom level when user zooms via zoom/pinch gesture, via mouse wheel or via trackpad. Always highest among three.', 'lightbox-photoswipe'); ?></p>
         </td>
     </tr>
     <tr>

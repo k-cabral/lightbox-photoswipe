@@ -67,7 +67,11 @@ class OptionsManager
         'use_transients' => [ 'default' => '1' ],
         'fix_attachment_links' => [ 'default' => '0' ],
         'wrap_nonlink' => [ 'default' => '0' ],
-        'wrap_nonlink_ignore_class' => [ 'default' => 'no-gallery' ]
+        'wrap_nonlink_ignore_class' => [ 'default' => 'no-gallery' ],
+        'initial_zoom_level' => [ 'default' => 'fit' ],
+        'secondary_zoom_level' => [ 'default' => 'fill' ],
+        'max_zoom_level' => [ 'default' => '2' ],
+        'scroll_wheel_zoom' => [ 'default' => '0' ],
     ];
 
     public $options;

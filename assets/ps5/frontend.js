@@ -328,12 +328,12 @@ let lbwpsInit = function(domUpdate) {
             pswpModule: () => import('./lib/photoswipe.esm.min.js'),
 
             // Additional options (also see https://photoswipe.com/options/)
-            initialZoomLevel: 'fit',
-            secondaryZoomLevel: 'fill',
-            maxZoomLevel: 2,
+            initialZoomLevel: lbwpsOptions.initialZoomLevel,
+            secondaryZoomLevel: lbwpsOptions.secondaryZoomLevel,
+            maxZoomLevel: lbwpsOptions.maxZoomLevel,
             spacing: lbwpsOptions.spacing/100,
             loop: lbwpsOptions.loop === '1',
-            wheelToZoom: false,
+            wheelToZoom: lbwpsOptions.scrollWheelZoom === '1',
             pinchToClose: lbwpsOptions.pinchtoclose === '1',
             closeOnVerticalDrag: lbwpsOptions.close_on_drag === '1',
             clickToCloseNonZoomable: true,

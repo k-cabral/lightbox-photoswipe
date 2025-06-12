@@ -1127,6 +1127,7 @@ class LightboxPhotoSwipe
             'use_alt',
             'usecaption',
             'desktop_slider',
+            'scroll_wheel_zoom'
         ];
         foreach($boolOptions as $boolOption) {
             $translation_array[$boolOption] = $this->optionsManager->getOption($boolOption) === '1' ? '1' : '0';
@@ -1144,6 +1145,9 @@ class LightboxPhotoSwipe
         $translation_array['padding_top'] = intval($this->optionsManager->getOption('padding_top'));
         $translation_array['padding_right'] = intval($this->optionsManager->getOption('padding_right'));
         $translation_array['padding_bottom'] = intval($this->optionsManager->getOption('padding_bottom'));
+        $translation_array['initialZoomLevel'] = $this->optionsManager->getOption('initial_zoom_level');
+        $translation_array['secondaryZoomLevel'] = $this->optionsManager->getOption('secondary_zoom_level');
+        $translation_array['maxZoomLevel'] = $this->optionsManager->getOption('max_zoom_level');
         wp_localize_script($handle, 'lbwpsOptions', $translation_array);
     }
 
