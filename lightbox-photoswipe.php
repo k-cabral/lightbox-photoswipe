@@ -1,11 +1,10 @@
 <?php
 /*
-Plugin Name: Lightbox with PhotoSwipe
-Plugin URI: https://wordpress.org/plugins/lightbox-photoswipe/
+Plugin Name: Lightbox with PhotoSwipe (K Mod)
+Plugin URI: https://github.com/k-cabral/lightbox-photoswipe
 Description: Lightbox with PhotoSwipe
 Version: 5.7.2
-Author: Arno Welzel
-Author URI: http://arnowelzel.de
+Author: Arno Welzel + k-cabral (mods)
 Text Domain: lightbox-photoswipe
 */
 use LightboxPhotoSwipe\LightboxPhotoSwipe;
